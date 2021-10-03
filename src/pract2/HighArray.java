@@ -145,36 +145,42 @@ return times;
 
 
     public long rank(int r){
-        if (r > nElems) throw new ArrayIndexOutOfBoundsException();
-        int rnk = 1;
-        find(r);
-        long num =  a[r];
-        for(int i = 0;i<nElems;i++){
-            if(a[i]  < num){ rnk++; }
-            System.out.println("I AM PATATA");
-        }
-   return rnk;
-    }
-
-    public void insertionSort(){
-        long temp=0;
-
-        for(int i = 1 ; i < nElems;i++){
-            for(int j = 0;j<i;j++){
-            if(a[i]<a[j]){
-                temp = a[i];
+        int i = 0,j=1,u=1;
+        long temp = 0;
+        int rnk = nElems;
+        boolean statement = true;
+        for( i = 0;i<nElems-u;i++){
+            j=i+1;
+            if(a[i]>a[j]){
+                temp  = a[i];
                 a[i] = a[j];
                 a[j] = temp;
-            }}
+                statement = false;
+            }
+            if(!statement&&j >= nElems-u){
+                if(r==rnk){ return a[rnk-1]; }
+                rnk--;
+                statement = true;
+                u++;
+                i = -1;
+            }
+        }
+        return a[r-1];
+    }
+    int range = 2;
+    long[] temparr=new long[range];
+    public void insertionSort(){
+        long temp=0;
+        for(int i = 0;i<range;i++){
 
         }
     }
 
     public void BubbleSort(){
-        int i = 0,j=1;
+        int i = 0,j=1,u=1,count=0;
         long temp = 0;
         boolean statement = true;
-        for( i = 0;i<nElems-1;i++){
+        for( i = 0;i<nElems-u;i++){
             j=i+1;
             if(a[i]>a[j]){
                temp  = a[i];
@@ -182,11 +188,14 @@ return times;
                 a[j] = temp;
                 statement = false;
             }
-            if(!statement&&j >= nElems-1){
+            if(!statement&&j >= nElems-u){
                 statement = true;
+                u++;
                 i = -1;
             }
+            count++;
         }
+        System.out.println("Steps:"+count);
   }
 
 

@@ -32,9 +32,10 @@ public class HighArrayApp {
         System.out.println(arr.std());
         //arr.fillArrayRandom();
 
-       arr.BubbleSort();
-
+        arr.BubbleSort();
         arr.display();
+        System.out.println(arr.rank(3));
+       // arr.display();
 
         // display items again
 
