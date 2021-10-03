@@ -151,7 +151,7 @@ return times;
         long num =  a[r];
         for(int i = 0;i<nElems;i++){
             if(a[i]  < num){ rnk++; }
-
+            System.out.println("I AM PATATA");
         }
    return rnk;
     }
