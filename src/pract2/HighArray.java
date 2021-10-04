@@ -167,11 +167,32 @@ return times;
         }
         return a[r-1];
     }
-    int range = 2;
-    long[] temparr=new long[range];
+
+
+    public void selectionSort(){
+        long temp = 0;
+        int count = 0, j = 0;
+        for (int i = 0; i < nElems; i++) {
+            for (j = i; j < nElems; j++) {
+                if (a[i] > a[j]) {
+                    temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
+                }
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+
     public void insertionSort(){
-        long temp=0;
-        for(int i = 0;i<range;i++){
+        int SortedArraySize = 0;
+        long temp = 0;
+        for(int i = 0;i<nElems;i++){
+            for(int j = 0;j<SortedArraySize;j++){
+                if(a[i]<a[j]){temp=a[i]; a[i]=a[j]; a[j] = temp;}
+            }
+            if(SortedArraySize < a.length){SortedArraySize++;}
 
         }
     }

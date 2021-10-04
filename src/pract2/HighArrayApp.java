@@ -7,8 +7,21 @@ public class HighArrayApp {
         int maxSize = 100;            // array size
         HighArray arr;                // reference to array
         arr = new HighArray(maxSize); // create the array
+        HiArray arr1 = new HiArray(maxSize);
 
-        arr.insert(25);
+        arr1.insert(46.2);
+        arr1.insert(30);
+        arr1.insert(46.2);
+        arr1.insert(45.1);
+        arr1.insert(46);
+        arr1.insert(15.0);
+        arr1.display();
+        System.out.println();
+        arr1.fillArrayRandom();
+        arr1.display();
+        arr1.insertionSort();
+        arr1.display();
+        /*arr.insert(25);
         arr.insert(30);
         arr.insert(10);
         arr.insert(1);
@@ -32,15 +45,15 @@ public class HighArrayApp {
         System.out.println(arr.std());
         //arr.fillArrayRandom();
 
-        arr.BubbleSort();
+        arr.selectionSort();
         arr.display();
-        System.out.println(arr.rank(3));
+
        // arr.display();
 
         // display items again
 
         //arr.readIntFile("/home/jawad/Documents/test.txt");
        // System.out.println("");
-      //  arr.display();
+      //  arr.display();*/
     }  // end main()
 }  // end class HighArrayApp
