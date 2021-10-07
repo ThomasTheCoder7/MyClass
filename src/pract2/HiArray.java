@@ -4,22 +4,27 @@ import com.sun.jdi.DoubleValue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class HiArray <T extends Number> {
+public class HiArray <T extends Comparable> {
     private T[] a;                 // ref to array a
     private int nElems;               // number of data items
     private int MaxIndex;
     private int MinIndex;
     private int index;
     private boolean noDup;
-
+    private Class<T> c;
 
     //-----------------------------------------------------------
-    public HiArray(int max)         // constructor
+    public HiArray(Class c,int max)         // constructor
     {
-        a =  (T[]) new Number[max];                // create the array
+        this.c = c;
+        a = (T[]) Array.newInstance(c, max);
+       // a =  (T[]) new Number[max];                // create the array
         nElems = 0;                        // no items yet
     }
     //-----------------------------------------------------------
@@ -35,7 +40,7 @@ public class HiArray <T extends Number> {
             return true;                    // no, found it
     }  // end find()
     //-----------------------------------------------------------
-
+/*
     public int findAll(T element) {
         int occ = 0;
         for (int i = 0; i < nElems; i++)
@@ -44,13 +49,14 @@ public class HiArray <T extends Number> {
             }
         return occ;
     }
-
+*/
     public void insert(T value)    // put element into array
     {
         a[nElems] = value;             // insert it
         nElems++;                      // increment size
     }
     //-----------------------------------------------------------
+    /*
     public void insertOrdered(T value)    // put element into array
     {
         int j;
@@ -67,7 +73,7 @@ public class HiArray <T extends Number> {
     {
         int j;
         for(j=0; j<nElems; j++)        // look for it
-            if( value.doubleValue() == a[j].doubleValue() )
+            if( value == a[j])
                 break;
         if(j==nElems)                  // can't find it
             return false;
@@ -80,13 +86,20 @@ public class HiArray <T extends Number> {
         }
     }  // end delete()
     //-----------------------------------------------------------
+
+     */
     public void display()             // displays array contents
     {
+
         for(int j=0; j<nElems; j++)       // for each element,
             System.out.print(a[j] + " ");  // display it
         System.out.println("");
     }
+
+
+
     //-----------------------------------------------------------
+    /*
     public int binarySearch(T searchKey) {
         int left = 0, right = nElems-1,pass=1;
 
@@ -341,5 +354,5 @@ public class HiArray <T extends Number> {
     }
 
 
-
+*/
 }

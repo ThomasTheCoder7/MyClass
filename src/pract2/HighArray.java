@@ -77,7 +77,20 @@ public class HighArray
             nElems--;                   // decrement size
             return true;
         }
-    }  // end delete()
+    }
+
+    public boolean delete(long value,int i)
+    {
+        int j=i;
+        {
+            for(int k=j; k<nElems; k++) // move higher ones down
+                a[k] = a[k+1];
+            nElems--;                   // decrement size
+            return true;
+        }
+    }
+
+    // end delete()
     //-----------------------------------------------------------
     public void display()             // displays array contents
     {
@@ -85,6 +98,8 @@ public class HighArray
             System.out.print(a[j] + " ");  // display it
         System.out.println("");
     }
+
+
     //-----------------------------------------------------------
     public int binarySearch(int searchKey) {
         int left = 0, right = nElems-1,pass=1;
@@ -167,32 +182,11 @@ return times;
         }
         return a[r-1];
     }
-
-
-    public void selectionSort(){
-        long temp = 0;
-        int count = 0, j = 0;
-        for (int i = 0; i < nElems; i++) {
-            for (j = i; j < nElems; j++) {
-                if (a[i] > a[j]) {
-                    temp = a[i];
-                    a[i] = a[j];
-                    a[j] = temp;
-                }
-                count++;
-            }
-        }
-        System.out.println(count);
-    }
-
+    int range = 2;
+    long[] temparr=new long[range];
     public void insertionSort(){
-        int SortedArraySize = 0;
-        long temp = 0;
-        for(int i = 0;i<nElems;i++){
-            for(int j = 0;j<SortedArraySize;j++){
-                if(a[i]<a[j]){temp=a[i]; a[i]=a[j]; a[j] = temp;}
-            }
-            if(SortedArraySize < a.length){SortedArraySize++;}
+        long temp=0;
+        for(int i = 0;i<range;i++){
 
         }
     }
@@ -267,22 +261,12 @@ return times;
        return Math.sqrt(div);
     }
 
-    public void RemoveDuplicates(){
-        long[] dupE = new long[nElems];
-        int spot = 0;
-        for(int i =0;i<nElems;i++){
+   public void RemoveDuplicates(){
+        for(int i = 0;i<nElems;i++){
             for(int j = 0;j<nElems;j++){
-                if(a[i]==a[j]&&i!=j){
-                    dupE[spot]=a[i];
-                    spot++;
-                }
+                if(a[i]==a[j]&&i!=j){delete(a[i],j);}
             }
         }
-        if(spot <= 0){noDup = true; }
-        for(int i = 0;i<dupE.length;i++){
-            deleteAll(dupE[i]);
-        }
-
     }
     public boolean checkUnique(){
         long[] dupE = new long[nElems];
