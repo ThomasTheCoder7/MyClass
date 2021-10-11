@@ -4,24 +4,29 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Vector;
-
+import pract1.Person;
 public class HighArrayApp {
     public static void main(String[] args) throws FileNotFoundException {
         int maxSize = 100;            // array size
         HighArray arr;                // reference to array
        // Class<HiArray>c = HiArray.class;
-        Class<Double> c = Double.class;
-        HiArray<Double> arr1 = new HiArray(c,maxSize);
-        arr = new HighArray(maxSize); // create the array
+        HiArray<Person> arr1 = new <Person>HiArray(Person.class,maxSize);
 
+        arr = new HighArray(maxSize); // create the array
+        Person p1 = new Person("Noah",5,180);
+        Person p2 = new Person("Saad",27,190);
        // arr1.insert(15);
-        arr1.insert(26.0);
-        arr1.insert(33.3);
+        arr1.insert(p1);
+        arr1.insert(p2);
+        arr1.insert(p1);
+        arr1.insert(p1);
+        System.out.println(arr1.findAll(p1));
         //arr1.insert(200);
         //arr1.insert(33);
        // arr1.BubbleSort();
         arr1.display();
-
+        System.out.println(arr1.rank(2));
+        arr1.display();
 
 
         arr.insert(25);

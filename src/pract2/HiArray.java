@@ -5,10 +5,7 @@ import com.sun.jdi.DoubleValue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class HiArray <T extends Comparable> {
     private T[] a;                 // ref to array a
@@ -17,14 +14,15 @@ public class HiArray <T extends Comparable> {
     private int MinIndex;
     private int index;
     private boolean noDup;
-    private Class<T> c;
+    private Class aClass;
 
     //-----------------------------------------------------------
-    public HiArray(Class c,int max)         // constructor
+    public  HiArray(Class c,int max)         // constructor
     {
-        this.c = c;
-        a = (T[]) Array.newInstance(c, max);
-       // a =  (T[]) new Number[max];                // create the array
+
+        aClass = c;
+        a = (T[]) Array.newInstance(c,max);
+       // a =  (T[]) new Number[max];
         nElems = 0;                        // no items yet
     }
     //-----------------------------------------------------------
@@ -40,28 +38,28 @@ public class HiArray <T extends Comparable> {
             return true;                    // no, found it
     }  // end find()
     //-----------------------------------------------------------
-/*
+
     public int findAll(T element) {
         int occ = 0;
         for (int i = 0; i < nElems; i++)
-            if (a[i].doubleValue() == element.doubleValue()) {
+            if (a[i] == element) {
                 occ++;
             }
         return occ;
     }
-*/
+
     public void insert(T value)    // put element into array
     {
         a[nElems] = value;             // insert it
         nElems++;                      // increment size
     }
     //-----------------------------------------------------------
-    /*
+
     public void insertOrdered(T value)    // put element into array
     {
         int j;
-        for(j=0; j<nElems; j++)        // find where it goes
-            if(a[j].doubleValue() > value.doubleValue())            // (linear search)
+        for(j=0; j<nElems; j++)// find where it goes
+            if(value.compareTo(a[j])==0)            // (linear search)
                 break;
         for(int k=nElems; k>j; k--)    // move bigger ones up
             a[k] = a[k-1];
@@ -87,7 +85,7 @@ public class HiArray <T extends Comparable> {
     }  // end delete()
     //-----------------------------------------------------------
 
-     */
+
     public void display()             // displays array contents
     {
 
@@ -99,18 +97,18 @@ public class HiArray <T extends Comparable> {
 
 
     //-----------------------------------------------------------
-    /*
+
     public int binarySearch(T searchKey) {
         int left = 0, right = nElems-1,pass=1;
 
         while (left <= right) {
             int pivot = (left + right) / 2;
-            if (a[pivot].doubleValue() == searchKey.doubleValue()) {
+            if (a[pivot] == searchKey) {
                 printTrace(left,right,pivot,pass);
                 return pivot;// found
             }
             else {
-                if (a[pivot].intValue() < searchKey.doubleValue()){
+                if (searchKey.compareTo(a[pivot])==-1){
                     left = pivot + 1;  // search right
                     printTrace(left,right,pivot,pass);
                     pass++;
@@ -147,7 +145,7 @@ public class HiArray <T extends Comparable> {
         T max = a[0];
 
         for (int i = 0;i<nElems;i++){
-            if(a[i].doubleValue()>max.doubleValue()){
+            if(max.compareTo(a[i])==-1){
                 max = a[i];
                 MaxIndex = i;
             }
@@ -164,18 +162,19 @@ public class HiArray <T extends Comparable> {
         boolean statement = true;
         for( i = 0;i<nElems-u;i++){
             j=i+1;
-            if(a[i].doubleValue()>a[j].doubleValue()){
+            if(a[j].compareTo(a[i])==1){
                 swap(i,j);
                 statement = false;
             }
             if(!statement&&j >= nElems-u){
-                if(r==rnk){ return a[rnk-1]; }
+                if(r==rnk){  return a[rnk-1]; }
                 rnk--;
                 statement = true;
                 u++;
                 i = -1;
             }
         }
+
         return a[r-1];
     }
 
@@ -185,7 +184,7 @@ public class HiArray <T extends Comparable> {
         int count = 0, j = 0;
         for (int i = 0; i < nElems; i++) {
             for (j = i; j < nElems; j++) {
-                if (a[i].doubleValue() > a[j].doubleValue()) {
+                if (a[i].compareTo(a[j])==1) {
                     swap(i,j);
                 }
                 count++;
@@ -199,7 +198,7 @@ public class HiArray <T extends Comparable> {
         long temp = 0;
         for(int i = 0;i<nElems;i++){
             for(int j = 0;j<SortedArraySize;j++){
-                if(a[i].doubleValue()<a[j].doubleValue()){swap(i,j);}
+                if(a[j].compareTo(a[i])==1){swap(i,j);}
             }
             if(SortedArraySize < a.length){SortedArraySize++;}
 
@@ -212,7 +211,7 @@ public class HiArray <T extends Comparable> {
         boolean statement = true;
         for( i = 0;i<nElems-u;i++){
             j=i+1;
-            if(a[i].doubleValue()>a[j].doubleValue()){
+            if(a[j].compareTo(a[i])==-1){
                 swap(i,j);
                 statement = false;
             }
@@ -236,7 +235,7 @@ public class HiArray <T extends Comparable> {
         T min = a[0];
 
         for (int i = 0;i<nElems;i++){
-            if(a[i].doubleValue()<min.doubleValue()){
+            if(a[i].compareTo(min)==-1){
                 min = a[i];
                 MinIndex = i;
             }
@@ -244,12 +243,12 @@ public class HiArray <T extends Comparable> {
         return min;
     }
 
-    public double range(){ return max().doubleValue()-min().doubleValue(); }
+    //public double range(){ return max()-min(); }
 
     public int MaxIndex(){ return MaxIndex; }
 
     public int MinIndex(){ return MinIndex; }
-
+/**
     public long sum(){
         int s = 0;
         for(int i =0;i<nElems;i++){ s+=a[i].doubleValue(); }
@@ -273,7 +272,7 @@ public class HiArray <T extends Comparable> {
 
         return Math.sqrt(div);
     }
-
+*/
     public void RemoveDuplicates(){
         T[] dupE = (T[]) new Number[nElems];
         int spot = 0;
@@ -292,7 +291,7 @@ public class HiArray <T extends Comparable> {
 
     }
     public boolean checkUnique(){
-        T[] dupE = (T[]) new Number[nElems];
+            T[] dupE = (T[]) Array.newInstance(aClass,nElems);
         int spot = 0;
         for(int i =0;i<nElems;i++){
             for(int j = 0;j<nElems;j++){
@@ -309,7 +308,7 @@ public class HiArray <T extends Comparable> {
         int t = 0;
         for(int i = 0;i<nElems-1;i++){
             t = i;
-            if(a[i].doubleValue()<=a[t++].doubleValue()){}
+            if(a[i].compareTo(a[t+1])==-1||a[i]==a[t+1]){}
             else {return false;}
         }
         return true;
@@ -348,11 +347,9 @@ public class HiArray <T extends Comparable> {
 
 
     public void swap(int first,int second){
-        T temp = a[first];
+        T temp = (T) a[first];
         a[first] = a[second];
         a[second]  = temp;
     }
 
-
-*/
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Nour
  */
 
-public class Person {
+public class Person implements Comparable {
     private String name;
     private int age;
     private double height;
@@ -32,6 +32,7 @@ public class Person {
      */
     public Person(String nName, int nAge,double nHeight) {
         name = nName;
+        if(nAge<0 || nHeight<=0)throw new IllegalArgumentException();
         age = nAge;
         height = nHeight;
     }
@@ -136,7 +137,7 @@ public class Person {
      * @return String representation of an object
      */
     public String toString() {
-        return "PRACT1.Person(" + name + ", " + age + ", " + height + ")";
+        return "{ Name:"+name + "||Age:" + age + "||Height:" + height +" }";
     }
     // ANSWER OF Q1
     public static void main(String[] args) {
@@ -144,4 +145,11 @@ public class Person {
         System.out.println(person);
     }
 
+
+    public int compareTo(Object o) {
+        Person x = (Person) o;
+        if(this.age < x.age){ return -1;}
+        if(this.age > x.age){ return  1;}
+        else return 0;
+    }
 }
