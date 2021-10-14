@@ -49,7 +49,6 @@ public class HighArray
             }
         return occ;
     }
-
     public void IncreaseSize(){
         Capacity*=2;
         long[] temparr = new long[Capacity];

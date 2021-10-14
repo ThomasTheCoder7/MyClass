@@ -3,22 +3,34 @@ public class HighArrayDynamic
 {
     private int nElems;
     private long[] a;
-    private final int INITIALSIZE = 20;
+    private final int INITIALSIZE = 2;
+    private int Capacity;
 
     public HighArrayDynamic()
     {
+        Capacity = INITIALSIZE;
         a = new long[INITIALSIZE];
         nElems = 0;
     }
     public HighArrayDynamic(int capacity)
     {
+        Capacity = capacity;
         a = new long[capacity];
         nElems = 0;
     }
 
-
-    public void add(long x)
-    {
+    public void IncreaseSize(){
+        Capacity*=2;
+        long[] temparr = new long[Capacity];
+        for (int i = 0;i<nElems;i++) {
+            temparr[i] = a[i];
+        }
+        a=temparr;
+    }
+    public void add(long x) {
+        if(nElems >= Capacity){
+            IncreaseSize();
+        }
         a[nElems]=x;
         nElems++;
     }
@@ -34,3 +46,7 @@ public class HighArrayDynamic
         return temp;
     }
 }
+
+
+
+

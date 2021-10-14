@@ -1,6 +1,7 @@
 package pract3;
 
 public class HighArrayDynamicTest {
+
     public static void main(String[] args) {
         HighArrayDynamic ae = new HighArrayDynamic();
         System.out.println(ae);
