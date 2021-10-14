@@ -13,13 +13,19 @@ public class HighArray
     private int MinIndex;
     private int index;
     private boolean noDup;
+    private int Capacity=5;
 
 
     //-----------------------------------------------------------
     public HighArray(int max)         // constructor
     {
+        Capacity = max;
         a = new long[max];                 // create the array
         nElems = 0;                        // no items yet
+    }
+    public HighArray(){
+        a = new long[Capacity];
+        nElems = 0;
     }
     //-----------------------------------------------------------
     public boolean find(long searchKey)
@@ -44,10 +50,21 @@ public class HighArray
         return occ;
     }
 
+    public void IncreaseSize(){
+        Capacity*=2;
+        long[] temparr = new long[Capacity];
+        for (int i = 0;i<nElems;i++) {
+            temparr[i] = a[i];
+        }
+        a=temparr;
+    }
     public void insert(long value)    // put element into array
     {
+        if(nElems >= Capacity){
+            IncreaseSize();
+        }
         a[nElems] = value;             // insert it
-        nElems++;                      // increment size
+        nElems++;                  // increment size
     }
     //-----------------------------------------------------------
     public void insertOrdered(long value)    // put element into array
@@ -184,6 +201,8 @@ return times;
     }
     int range = 2;
     long[] temparr=new long[range];
+
+
     public void insertionSort(){
         long temp=0;
         for(int i = 0;i<range;i++){
@@ -268,6 +287,7 @@ return times;
             }
         }
     }
+    
     public boolean checkUnique(){
         long[] dupE = new long[nElems];
         int spot = 0;
@@ -309,11 +329,46 @@ return times;
 
     }
 
-    public void swap(int i,int j){
-        int temp;
+    public void Shift(String s,int n){
+        if (s.equals("Right")||s.equals("right")){
+            for(int i = n;i>0;i--)
+                a[i] = a[i-1];
+        }
+        else{
+            for(int i = n;i<nElems;i++) {a[i] = a[i+1];}
+        }
+    }
+    public void addfirst(long n){
+        nElems++;
+        Shift("Right",nElems);
+        a[0] = n;
+    }
+    public void RemoveFirst(){Shift("Left",nElems);}
 
-
+    public void RemoveAt(int index){
+        nElems--;
+        Shift("Left",index);
     }
 
+    public long get(int index) {
+        return a[index];
+    }
 
+    public void set(int index,long val) {
+        a[index] = val;
+    }
+
+    public long[] toArray(){
+        return a;
+    }
+
+    public void clear(){
+        nElems = 0;
+    }
+
+    public void swap(int i,int j){
+        long temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 }  // end class HighArray

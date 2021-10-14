@@ -7,12 +7,14 @@ import java.util.Vector;
 import pract1.Person;
 public class HighArrayApp {
     public static void main(String[] args) throws FileNotFoundException {
-        int maxSize = 100;            // array size
+        int maxSize = 1;            // array size
         HighArray arr;                // reference to array
        // Class<HiArray>c = HiArray.class;
-        HiArray<Person> arr1 = new <Person>HiArray(Person.class,maxSize);
-
+        //HiArray<Person> arr1 = new <Person>HiArray(Person.class,maxSize);
         arr = new HighArray(maxSize); // create the array
+
+/*
+
         Person p1 = new Person("Noah",5,180);
         Person p2 = new Person("Saad",27,190);
        // arr1.insert(15);
@@ -27,7 +29,7 @@ public class HighArrayApp {
         arr1.display();
         System.out.println(arr1.rank(2));
         arr1.display();
-
+*/
 
         arr.insert(25);
         arr.insert(30);
@@ -40,7 +42,9 @@ public class HighArrayApp {
         arr.insert(3);
         arr.insert(150);
         arr.insert(-1);
-        arr.RemoveDuplicates();
+       // arr.addfirst(-555);
+        arr.RemoveAt(0);
+        long[] x = arr.toArray();
         arr.display();                // display items
 /*
         int searchKey = 35;           // search for item
