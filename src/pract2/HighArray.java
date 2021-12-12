@@ -322,7 +322,6 @@ return times;
         while (input.hasNextInt()) {
             int next = input.nextInt();
             insert(next);
-
         }// end while
 
 
@@ -350,6 +349,8 @@ return times;
     }
 
     public long get(int index) {
+
+        if(nElems == 0 ){return 0;}
         return a[index];
     }
 
