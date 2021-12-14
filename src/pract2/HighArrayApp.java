@@ -28,7 +28,8 @@ public class HighArrayApp {
        // arr1.BubbleSort();
         arr1.display();
         System.out.println(arr1.rank(2));
-        arr1.display();
+        arr1.di
+        splay();
 */
 
         arr.insert(25);

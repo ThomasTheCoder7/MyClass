@@ -20,7 +20,7 @@ public class HighArrayDynamic
     }
 
     public void IncreaseSize(){
-        Capacity*=2;
+        Capacity = Capacity*2;
         long[] temparr = new long[Capacity];
         for (int i = 0;i<nElems;i++) {
             temparr[i] = a[i];
