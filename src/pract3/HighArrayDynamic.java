@@ -1,6 +1,5 @@
 package pract3;
-public class HighArrayDynamic
-{
+public class HighArrayDynamic {
     private int nElems;
     private long[] a;
     private final int INITIALSIZE = 2;
