@@ -2,7 +2,8 @@ package pract7;
 
 public class Palindromes {
     public static void main(String[] args) {
-        System.out.println(Palindrome("ppy"));
+
+        System.out.println(Palindrome("NANN"));
     }
 
 

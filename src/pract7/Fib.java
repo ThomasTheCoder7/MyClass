@@ -22,14 +22,14 @@ public class Fib
 
     public static int fib2(int n)
     {
-        int[] a = new int[n];
-        if(n < n){
-
+        int[] a = new int[n+1];
         a[0] = 0;
         a[1] = 1;
-        a[n] = fib2(n+1)+fib2(n+1);
-        return a[n-1];}
-        else return 0;
+        for (int i = 2;i<a.length;i++)
+        {
+            a[i]=a[i-2]+a[i-1];
+        }
+        return a[a.length-1];
     }
 }
 

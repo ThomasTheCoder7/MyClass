@@ -8,7 +8,7 @@ public class StackArrayG<T> {
     private int nElems; // top of stack
     
     //--------------------------------------------------------------
-    public StackArrayG(Class c, int s) {         // constructor
+    public StackArrayG(Class c, int s) {   // constructor
         capacity = s;             // set array size
         a = (T[]) Array.newInstance(c,s) ; // create array
         nElems = 0;                // no items yet
